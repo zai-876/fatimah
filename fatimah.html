@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ar">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>متجر الهدايا - فاطمة</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                text-align: center;
+                background-color: #fce4ec;
+                direction: rtl;
+                margin: 0;
+                padding: 0;
+            }
+            header {
+                background-color: #e91e63;
+                color: white;
+                padding: 20px;
+            }
+            .container {
+                width: 50%;
+                margin: auto;
+                background-color: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            input, select, button {
+                margin: 10px 0;
+                padding: 10px;
+                width: 90%;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+            .hidden {
+                display: none;
+            }
+            button {
+                background-color: #e91e63;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+            button:hover {
+                background-color: #d81b60;
+            }
+        </style>
+        <script>
+            function toggleImageUpload(value) {
+                document.getElementById("imageUpload").classList.toggle("hidden", value !== "صورة");
+            }
+
+            function togglePaymentFields(value) {
+                document.getElementById("cardDetails").classList.toggle("hidden", value !== "بطاقة");
+                document.getElementById("stcPhone").classList.toggle("hidden", value !== "STC Pay");
+            }
+
+            function toggleCustomGift(value) {
+                document.getElementById("customGift").classList.toggle("hidden", value !== "غير ذلك");
+            }
+        </script>
+    </head>
+    <body>
+
+        <header>
+            <!-- صورة هدية وردية من Unsplash -->
+            <img src="https://png.pngtree.com/thumb_back/fh260/background/20230718/pngtree-minimal-pink-background-with-pastel-pink-gift-box-and-blue-ribbon-image_3908853.jpg">
+            <h1>متجر الهدايا المميز</h1>
+        </header>
+
+        <main>
+            <section class="container">
+                <form>
+                    <!-- 1️⃣ إدخال بيانات العميل -->
+                    <h3>معلومات العميل</h3>
+                    <input type="text" placeholder="الاسم بالكامل" required>
+                    <input type="tel" placeholder="رقم الجوال" required>
+                    <input type="password" placeholder="كلمة المرور" required>
+
+                    <!-- 2️⃣ اختيار مكونات الهدية -->
+                    <h3>مكونات الهدية</h3>
+                    <select onchange="toggleCustomGift(this.value)" required>
+                        <option value="">اختر مكونات الهدية</option>
+                        <option>ورد</option>
+                        <option>دب</option>
+                        <option>ألعاب أطفال</option>
+                        <option>شنطة</option>
+                        <option>نبتة</option>
+                        <option value="غير ذلك">غير ذلك</option>
+                    </select>
+
+                    <!-- 🔹 حقل إدخال مكون هدية مخصص -->
+                    <input type="text" id="customGift" class="hidden" placeholder="اكتب المكون الذي تريده">
+
+                    <!-- 3️⃣ اختيار طريقة تنسيق الهدية -->
+                    <h3>تنسيق الهدية</h3>
+                    <select onchange="toggleImageUpload(this.value)" required>
+                        <option value="">اختر طريقة التنسيق</option>
+                        <option value="المتجر">تنسيق المتجر</option>
+                        <option value="صورة">إضافة صورة التنسيق</option>
+                    </select>
+                    
+                    <input type="file" id="imageUpload" class="hidden">
+
+                    <!-- 4️⃣ اختيار طريقة الدفع -->
+                    <h3>طريقة الدفع</h3>
+                    <select onchange="togglePaymentFields(this.value)" required>
+                        <option value="">اختر طريقة الدفع</option>
+                        <option>نقدًا</option>
+                        <option>بطاقة</option>
+                        <option>STC Pay</option>
+                    </select>
+
+                    <!-- 🔹 بيانات البطاقة البنكية -->
+                    <div id="cardDetails" class="hidden">
+                        <h4>تفاصيل البطاقة البنكية</h4>
+                        <input type="text" placeholder="رقم البطاقة" maxlength="16">
+                        <input type="text" placeholder="تاريخ الانتهاء (MM/YY)" maxlength="5">
+                        <input type="text" placeholder="CVV" maxlength="3">
+                    </div>
+
+                    <!-- 🔹 رقم الهاتف لـ STC Pay -->
+                    <div id="stcPhone" class="hidden">
+                        <h4>رقم الهاتف لـ STC Pay</h4>
+                        <input type="tel" placeholder="أدخل رقم الجوال">
+                    </div>
+
+                    <button type="submit">إرسال الطلب</button>
+                </form>
+            </section>
+        </main>
+
+    </body>
+</html>
